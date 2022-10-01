@@ -8,6 +8,7 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "row",
     gap: 100,
+    marginBottom: 50,
     "&:nth-child(2n+1)": {
       flexDirection: "row-reverse",
     },
@@ -34,7 +35,7 @@ const PostCard = ({ id, title, description, img }) => {
       <div className={classes.cardContent}>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {title}
+            <Link to={`/post/${id}`}>{title}</Link>
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {description}
