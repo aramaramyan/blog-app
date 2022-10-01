@@ -5,6 +5,7 @@ import img2 from "./../img/img2.jpg";
 import img3 from "./../img/img3.jpg";
 import img4 from "./../img/img4.jpg";
 import img5 from "./../img/img5.jpg";
+import PostCard from "../components/PostCard";
 
 const useStyles = makeStyles({
   homeWrapper: {},
@@ -50,7 +51,13 @@ const Home = () => {
     <div className={classes.homeWrapper}>
       <div className={classes.postList}>
         {posts.map((post) => (
-          <div key={post.id} className={classes.post}></div>
+          <PostCard
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            description={post.desc}
+            img={post.img}
+          />
         ))}
       </div>
     </div>
