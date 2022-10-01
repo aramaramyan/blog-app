@@ -1,11 +1,13 @@
 import React from "react";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Write from "./pages/Write";
 import Login from "./pages/Login";
 import Layout from "./components/Layout";
 import Single from "./pages/Single";
 import Register from "./pages/Register";
+import { Container } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 const router = createBrowserRouter([
   {
@@ -14,32 +16,46 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <Home />,
       },
       {
-        path: "/single",
-        element: <Single />
+        path: "/post/:id",
+        element: <Single />,
       },
       {
         path: "/write",
-        element: <Write />
-      }
-    ]
+        element: <Write />,
+      },
+    ],
   },
   {
     path: "/register",
-    element: <Register />
+    element: <Register />,
   },
   {
     path: "/login",
-    element: <Login />
-  }
+    element: <Login />,
+  },
 ]);
 
+const useStyles = makeStyles({
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    backgroundColor: "lightgreen",
+  },
+});
+
 function App() {
+  const classes = useStyles();
+
   return (
-    <div>
-      <RouterProvider router={router} />
+    <div style={{ width: "100%", height: "100vh" }}>
+      <Container maxWidth="md" className={classes.container}>
+        <RouterProvider router={router} />
+      </Container>
     </div>
   );
 }
