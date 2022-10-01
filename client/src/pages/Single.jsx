@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
+import Menu from "../components/Menu";
 import { Avatar, Grid, Typography } from "@mui/material";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -11,6 +12,10 @@ const useStyles = makeStyles({
     width: "100%",
     height: 300,
     overflow: "hidden",
+    // backgroundImage: img,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "0 0",
+    backgroundAttachment: "fixed",
     "& img": {
       objectFit: "contain",
     },
@@ -100,7 +105,9 @@ const Single = () => {
           </p>
         </div>
       </Grid>
-      <Grid item xs={4}></Grid>
+      <Grid item xs={4}>
+        <Menu />
+      </Grid>
     </Grid>
   );
 };
