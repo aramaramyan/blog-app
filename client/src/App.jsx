@@ -44,7 +44,6 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    backgroundColor: "lightgreen",
   },
 });
 

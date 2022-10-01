@@ -23,10 +23,10 @@ const Login = () => {
       <form className={classes.formContainer}>
         <TextField
           required
-          id="standard-password-input"
+          id="standard-email-input"
           label="Email"
           type="text"
-          autoComplete="current-password"
+          autoComplete="current-email"
           variant="standard"
         />
         <TextField
@@ -39,8 +39,7 @@ const Login = () => {
         />
         <Button variant="outlined">Login</Button>
         <span>
-          Don't you have an account? <Link to="/register" />
-          Register
+          Don't you have an account? <Link to="/register">Register</Link>
         </span>
       </form>
     </Stack>
