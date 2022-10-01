@@ -32,7 +32,7 @@ const Navbar = () => {
     <div className={classes.navbarWrapper}>
       <div className={classes.logoWrapper}>
         <img src={logo} alt="Magnat Logo" className={classes.logo} />
-        <span>Magnat Blog</span>
+        <span>MAGNAT Blog</span>
       </div>
       <Stack direction="row" spacing={2}>
         <Link to="/?cat=art">
