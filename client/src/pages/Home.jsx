@@ -1,11 +1,18 @@
 import React from "react";
+import { makeStyles } from "@mui/styles";
 import img1 from "./../img/img1.jpg.";
 import img2 from "./../img/img2.jpg";
 import img3 from "./../img/img3.jpg";
 import img4 from "./../img/img4.jpg";
 import img5 from "./../img/img5.jpg";
 
+const useStyles = makeStyles({
+  homeWrapper: {},
+  postList: {},
+});
+
 const Home = () => {
+  const classes = useStyles();
   const posts = [
     {
       id: 1,
@@ -39,7 +46,15 @@ const Home = () => {
     },
   ];
 
-  return <div>Home</div>;
+  return (
+    <div className={classes.homeWrapper}>
+      <div className={classes.postList}>
+        {posts.map((post) => (
+          <div key={post.id} className={classes.post}></div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Home;
