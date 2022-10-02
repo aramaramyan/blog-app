@@ -48,7 +48,7 @@ const Single = () => {
   const classes = useStyles({});
 
   return (
-    <Grid container spacing={2} className={classes.singlePageWrapper}>
+    <Grid container spacing={6} className={classes.singlePageWrapper}>
       <Grid item xs={8}>
         <div className={classes.postImage}>
           <img src={img} alt="Post Image" />

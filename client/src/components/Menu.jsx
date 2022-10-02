@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
-import img1 from "../img/img1.jpg.";
 import img2 from "../img/img2.jpg";
 import img3 from "../img/img3.jpg";
 import img4 from "../img/img4.jpg";
@@ -15,7 +14,11 @@ const useStyles = makeStyles({
 });
 
 const Menu = () => {
-  const classes = useStyles();
+  const classes = useStyles({
+    menuTitle: {
+      marginBottom: 30,
+    },
+  });
   const posts = [
     {
       id: 2,
@@ -45,7 +48,9 @@ const Menu = () => {
 
   return (
     <div className={classes.menuWrapper}>
-      <Typography variant="h5">Other posts you may like</Typography>
+      <Typography variant="h5" className={classes.menuTitle} gutterBottom>
+        Other posts you may like
+      </Typography>
       <div className={classes.menuList}>
         {posts.map((post) => (
           <MenuPostCard key={post.id} id={post.id} title={post.title} img={post.img} />
