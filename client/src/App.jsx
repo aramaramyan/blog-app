@@ -7,7 +7,6 @@ import Layout from "./components/Layout";
 import Single from "./pages/Single";
 import Register from "./pages/Register";
 import { Container } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 
 const router = createBrowserRouter([
   {
@@ -38,21 +37,20 @@ const router = createBrowserRouter([
   },
 ]);
 
-const useStyles = makeStyles({
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-  },
-});
-
 function App() {
-  const classes = useStyles();
-
   return (
     <div style={{ width: "100%", height: "100vh" }}>
-      <Container maxWidth="md" className={classes.container}>
+      <Container
+        maxWidth="md"
+        fixed
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
         <RouterProvider router={router} />
       </Container>
     </div>
