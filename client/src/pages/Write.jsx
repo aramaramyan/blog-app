@@ -21,13 +21,29 @@ const useStyles = makeStyles({
     margin: "30px 0",
     height: "100%",
   },
+  item: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+    alignItems: "flex-start",
+    padding: "16px 10px",
+    border: "1px solid #1976d2",
+    borderRadius: 6,
+  },
   editorContainer: {
-    height: 300,
+    height: 500,
     borderRadius: 8,
     marginTop: 30,
+    border: "1px solid #1976d2",
   },
   editor: {
     height: "100%",
+  },
+  buttons: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 20,
+    width: "100%",
   },
 });
 
@@ -40,7 +56,13 @@ const Write = () => {
       <Grid item xs={8} style={{ margin: "30px 0" }}>
         <TextField id="outlined-basic" label="Title" variant="outlined" size="small" fullWidth />
         <div className={classes.editorContainer}>
-          <ReactQuill theme="snow" value={value} onChange={setValue} className={classes.editor} />
+          <ReactQuill
+            theme="snow"
+            value={value}
+            onChange={setValue}
+            className={classes.editor}
+            style={{ border: "none" }}
+          />
         </div>
       </Grid>
       <Grid
@@ -62,10 +84,10 @@ const Write = () => {
             <input hidden accept="image/*" multiple type="file" />
           </Button>
           <div className={classes.buttons}>
-            <Button variant="outlined" startIcon={<HistoryIcon />}>
+            <Button size="small" fullWidth variant="outlined" startIcon={<HistoryIcon />}>
               Save as draft
             </Button>
-            <Button variant="contained" endIcon={<SaveIcon />}>
+            <Button size="small" fullWidth variant="contained" endIcon={<SaveIcon />}>
               Update
             </Button>
           </div>
