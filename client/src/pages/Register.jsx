@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { Button, Stack, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
@@ -17,13 +18,25 @@ const useStyles = makeStyles({
 const Register = () => {
   const classes = useStyles();
   const [inputs, setInputs] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
   });
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await axios.post("/auth/register", inputs);
+      console.log(123);
+      navigate("/");
+    } catch (err) {
+      setError(err.response.data);
+    }
   };
 
   return (
@@ -35,8 +48,8 @@ const Register = () => {
           id="standard-name-input"
           label="Full Name"
           type="text"
-          name="username"
-          value={inputs.username}
+          name="name"
+          value={inputs.name}
           autoComplete="current-name"
           variant="standard"
           onChange={handleChange}
@@ -50,6 +63,8 @@ const Register = () => {
           value={inputs.email}
           autoComplete="current-email"
           variant="standard"
+          error={!!error}
+          helperText={error}
           onChange={handleChange}
         />
         <TextField
@@ -63,7 +78,9 @@ const Register = () => {
           variant="standard"
           onChange={handleChange}
         />
-        <Button variant="outlined">register</Button>
+        <Button variant="outlined" onClick={handleSubmit}>
+          register
+        </Button>
         <span>
           Do you have an account? <Link to="/login">Login</Link>
         </span>
