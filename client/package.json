@@ -44,5 +44,7 @@
   },
   "devDependencies": {
     "prettier": "2.7.1"
-  }
+  },
+  "author": "Aram Aramyan <a.aramyan1997@gmail.com>",
+  "license": "ISC"
 }
