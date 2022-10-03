@@ -32,7 +32,6 @@ const Register = () => {
   const handleSubmit = async () => {
     try {
       await axios.post("/auth/register", inputs);
-      console.log(123);
       navigate("/");
     } catch (err) {
       setError(err.response.data);
