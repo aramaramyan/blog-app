@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 import { makeStyles } from "@mui/styles";
 import Menu from "../components/Menu";
 import { Avatar, Grid, Typography } from "@mui/material";
@@ -46,15 +48,31 @@ const useStyles = makeStyles({
 
 const Single = () => {
   const classes = useStyles({});
+  const [post, setPost] = useState({});
+  const location = useLocation();
+  const postId = location.pathname.split("/")[2];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/posts${postId}`);
+        setPost(res.data);
+      } catch (err) {
+        console.log(`:::err:::`, err);
+      }
+    };
+
+    fetchData();
+  }, [postId]);
 
   return (
     <Grid container spacing={6} className={classes.singlePageWrapper}>
       <Grid item xs={8}>
         <div className={classes.postImage}>
-          <img src={img} alt="background" />
+          <img src={post?img} alt="background" />
         </div>
         <div className={classes.postOwnerWrapper}>
-          <Avatar>AA</Avatar>
+          <Avatar>{post.name}</Avatar>
           <div className={classes.nameWrapper}>
             <Typography variant="h6">Aram Aramyan</Typography>
             <Typography variant="caption" className={classes.postDate}>
