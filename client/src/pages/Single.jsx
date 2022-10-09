@@ -51,7 +51,7 @@ const Single = () => {
     <Grid container spacing={6} className={classes.singlePageWrapper}>
       <Grid item xs={8}>
         <div className={classes.postImage}>
-          <img src={img} alt="Post Image" />
+          <img src={img} alt="background" />
         </div>
         <div className={classes.postOwnerWrapper}>
           <Avatar>AA</Avatar>
