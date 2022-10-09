@@ -34,7 +34,6 @@ export const login = (req, res) => {
   db.query(query, [req.body.email], (err, data) => {
     if (err) return res.json(err);
     if (data.length === 0) return res.status(404).json("email");
-
     // CHECK USER PASSWORD
 
     const isPasswordCorrect = bycript.compareSync(
@@ -45,7 +44,7 @@ export const login = (req, res) => {
     if (!isPasswordCorrect) return res.status(400).json("password");
 
     const token = jwt.sign({ id: data[0].id }, "jwtkey");
-    const { password, ...restData } = data;
+    const { password, ...restData } = data[0];
 
     res
       .cookie("access_token", token, { httpOnly: true })
@@ -54,4 +53,12 @@ export const login = (req, res) => {
   });
 };
 
-export const logout = (req, res) => {};
+export const logout = (req, res) => {
+  res
+    .clearCookie("access_token", {
+      sameSite: "none",
+      secure: true,
+    })
+    .status(200)
+    .json("User has been logged out.");
+};
