@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { makeStyles } from "@mui/styles";
-import img1 from "./../img/img1.jpg.";
-import img2 from "./../img/img2.jpg";
-import img3 from "./../img/img3.jpg";
-import img4 from "./../img/img4.jpg";
-import img5 from "./../img/img5.jpg";
 import PostCard from "../components/PostCard";
 import { useLocation } from "react-router-dom";
 

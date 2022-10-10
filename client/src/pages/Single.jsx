@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import { AuthContext } from "../context/authContext";
@@ -9,7 +9,6 @@ import Menu from "../components/Menu";
 import { Avatar, Grid, Typography } from "@mui/material";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
-import img from "./../img/img1.jpg.";
 
 const useStyles = makeStyles({
   postImage: {
@@ -17,7 +16,6 @@ const useStyles = makeStyles({
     width: "100%",
     height: 300,
     overflow: "hidden",
-    // backgroundImage: img,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "0 0",
     backgroundAttachment: "fixed",
@@ -55,9 +53,7 @@ const Single = () => {
   const location = useLocation();
   const postId = location.pathname.split("/")[2];
   const { currentUser } = useContext(AuthContext);
-
-  console.log(`:::currentUser:::`, currentUser);
-  console.log(`:::post:::`, post);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,6 +67,15 @@ const Single = () => {
 
     fetchData();
   }, [postId]);
+
+  const handleDeletePost = async () => {
+    try {
+      await axios.delete(`/posts/${postId}`);
+      navigate("/");
+    } catch (err) {
+      console.log(`:::err:::`, err);
+    }
+  };
 
   return (
     <Grid container spacing={6} className={classes.singlePageWrapper}>
@@ -93,7 +98,7 @@ const Single = () => {
           {currentUser.email === post.userEmail && (
             <div className={classes.actions}>
               <EditRoundedIcon fontSize="small" className={classes.icon} />
-              <DeleteIcon fontSize="small" className={classes.icon} />
+              <DeleteIcon fontSize="small" className={classes.icon} onClick={handleDeletePost} />
             </div>
           )}
         </div>
