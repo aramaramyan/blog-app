@@ -15,7 +15,14 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
-const pages = ["ART", "SCIENCE", "TECHNOLOGY", "CINEMA", "DESIGN", "FOOD"];
+const pages = [
+  { id: 1, title: "ART", category: "art" },
+  { id: 2, title: "SCIENCE", category: "science" },
+  { id: 3, title: "TECHNOLOGY", category: "technology" },
+  { id: 4, title: "CINEMA", category: "cinema" },
+  { id: 5, title: "DESIGN", category: "design" },
+  { id: 6, title: "FOOD", category: "food" },
+];
 
 const Navbar = () => {
   const { currentUser, logout } = useContext(AuthContext);
@@ -89,13 +96,7 @@ const Navbar = () => {
               sx={{
                 display: { xs: "block", md: "none" },
               }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            ></Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
@@ -116,14 +117,18 @@ const Navbar = () => {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+          <Box
+            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: "flex-end" }}
+          >
+            {pages.map(({ id, title, category }) => (
               <Button
-                key={page}
+                key={id}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                <Link style={{ color: "white", textDecoration: "none" }} to={`/?cat=${category}`}>
+                  {title}
+                </Link>
               </Button>
             ))}
           </Box>
@@ -169,7 +174,9 @@ const Navbar = () => {
               </Menu>
             </Box>
           ) : (
-            <Link to="/login">Login</Link>
+            <Link to="/login" style={{ color: "white", textDecoration: "none" }}>
+              LOGIN
+            </Link>
           )}
         </Toolbar>
       </Container>
