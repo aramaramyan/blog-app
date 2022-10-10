@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 const Register = () => {
   const classes = useStyles();
   const [inputs, setInputs] = useState({
-    name: "",
+    userName: "",
     email: "",
     password: "",
   });
@@ -47,8 +47,8 @@ const Register = () => {
           id="standard-name-input"
           label="Full Name"
           type="text"
-          name="name"
-          value={inputs.name}
+          name="userName"
+          value={inputs.userName}
           autoComplete="current-name"
           variant="standard"
           onChange={handleChange}

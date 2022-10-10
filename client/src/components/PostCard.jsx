@@ -8,16 +8,22 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "row",
     gap: 100,
+    width: "100%",
     marginBottom: 50,
     "&:nth-child(2n+1)": {
       flexDirection: "row-reverse",
     },
   },
   cardImage: {
+    flex: 1,
+    width: "300px",
+    height: "300px",
+  },
+  cardContent: {
+    flex: 1,
     width: "100%",
     height: "100%",
   },
-  cardContent: {},
 });
 
 const PostCard = ({ id, title, description, img }) => {

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import { AuthContext } from "../context/authContext";
+import { getUsrNameFirstLetters } from "../helpers/getUsrNameFirstLetters";
 import { makeStyles } from "@mui/styles";
 import Menu from "../components/Menu";
 import { Avatar, Grid, Typography } from "@mui/material";
@@ -58,7 +59,7 @@ const Single = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/posts${postId}`);
+        const res = await axios.get(`/posts/${postId}`);
         setPost(res.data);
       } catch (err) {
         console.log(`:::err:::`, err);
@@ -75,7 +76,11 @@ const Single = () => {
           <img src={post.img} alt="background" />
         </div>
         <div className={classes.postOwnerWrapper}>
-          <Avatar>{post.name}</Avatar>
+          {post.userImg ? (
+            <Avatar alt={post.name} src={post.userImg} />
+          ) : (
+            <Avatar>{getUsrNameFirstLetters(post.name)}</Avatar>
+          )}
           <div className={classes.nameWrapper}>
             <Typography variant="h6">Aram Aramyan</Typography>
             <Typography variant="caption" className={classes.postDate}>
@@ -94,7 +99,7 @@ const Single = () => {
             {post.title}
           </Typography>
           <Typography paragraph className={classes.postDescription}>
-            {post.description}
+            {post.desc}
           </Typography>
         </div>
       </Grid>

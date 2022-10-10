@@ -35,15 +35,17 @@ const Home = () => {
   return (
     <div className={classes.homeWrapper}>
       <div className={classes.postList}>
-        {posts.map((post) => (
-          <PostCard
-            key={post.id}
-            id={post.id}
-            title={post.title}
-            description={post.desc}
-            img={post.img}
-          />
-        ))}
+        {posts.map((post) => {
+          return (
+            <PostCard
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              description={post.desc}
+              img={post.img}
+            />
+          );
+        })}
       </div>
     </div>
   );
