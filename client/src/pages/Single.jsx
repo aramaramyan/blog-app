@@ -56,6 +56,9 @@ const Single = () => {
   const postId = location.pathname.split("/")[2];
   const { currentUser } = useContext(AuthContext);
 
+  console.log(`:::currentUser:::`, currentUser);
+  console.log(`:::post:::`, post);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -87,7 +90,7 @@ const Single = () => {
               Posted {moment(post.date).fromNow()}
             </Typography>
           </div>
-          {currentUser.name === post.name && (
+          {currentUser.email === post.userEmail && (
             <div className={classes.actions}>
               <EditRoundedIcon fontSize="small" className={classes.icon} />
               <DeleteIcon fontSize="small" className={classes.icon} />
