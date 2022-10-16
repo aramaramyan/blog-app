@@ -50,11 +50,33 @@ const useStyles = makeStyles({
 const Write = () => {
   const classes = useStyles();
   const [value, setValue] = useState("");
+  const [title, setTitle] = useState("");
+  const [file, setFile] = useState(null);
+  const [cat, setCat] = useState("");
+
+  const handleTitle = (evt) => {
+    setTitle(evt.target.value);
+  };
+
+  const handleFile = (evt) => {
+    setFile(evt.target.files[0]);
+  };
+
+  const handleCategory = (evt) => {
+    setCat(evt.target.value);
+  };
 
   return (
     <Grid container spacing={6} className={classes.writeWrapper}>
       <Grid item xs={8} style={{ margin: "30px 0" }}>
-        <TextField id="outlined-basic" label="Title" variant="outlined" size="small" fullWidth />
+        <TextField
+          id="outlined-basic"
+          label="Title"
+          variant="outlined"
+          size="small"
+          fullWidth
+          onChange={handleTitle}
+        />
         <div className={classes.editorContainer}>
           <ReactQuill
             theme="snow"
@@ -81,7 +103,7 @@ const Write = () => {
           </Typography>
           <Button component="label" size="small">
             Upload Image
-            <input hidden accept="image/*" multiple type="file" />
+            <input hidden accept="image/*" multiple type="file" onChange={handleFile} />
           </Button>
           <div className={classes.buttons}>
             <Button size="small" fullWidth variant="outlined" startIcon={<HistoryIcon />}>
@@ -102,12 +124,42 @@ const Write = () => {
               defaultValue="art"
               name="radio-buttons-group"
             >
-              <FormControlLabel value="art" control={<Radio />} label="Art" />
-              <FormControlLabel value="science" control={<Radio />} label="Science" />
-              <FormControlLabel value="technology" control={<Radio />} label="Technology" />
-              <FormControlLabel value="cinema" control={<Radio />} label="Cinema" />
-              <FormControlLabel value="design" control={<Radio />} label="Design" />
-              <FormControlLabel value="food" control={<Radio />} label="Food" />
+              <FormControlLabel
+                value="art"
+                control={<Radio />}
+                label="Art"
+                onChange={handleCategory}
+              />
+              <FormControlLabel
+                value="science"
+                control={<Radio />}
+                label="Science"
+                onChange={handleCategory}
+              />
+              <FormControlLabel
+                value="technology"
+                control={<Radio />}
+                label="Technology"
+                onChange={handleCategory}
+              />
+              <FormControlLabel
+                value="cinema"
+                control={<Radio />}
+                label="Cinema"
+                onChange={handleCategory}
+              />
+              <FormControlLabel
+                value="design"
+                control={<Radio />}
+                label="Design"
+                onChange={handleCategory}
+              />
+              <FormControlLabel
+                value="food"
+                control={<Radio />}
+                label="Food"
+                onChange={handleCategory}
+              />
             </RadioGroup>
           </FormControl>
         </div>
