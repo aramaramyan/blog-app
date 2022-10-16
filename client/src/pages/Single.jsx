@@ -112,7 +112,7 @@ const Single = () => {
         </div>
       </Grid>
       <Grid item xs={4}>
-        <Menu />
+        <Menu cat={post.category} />
       </Grid>
     </Grid>
   );
