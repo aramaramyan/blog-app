@@ -13,6 +13,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import PublishRoundedIcon from "@mui/icons-material/PublishRounded";
 import SaveIcon from "@mui/icons-material/Save";
 import HistoryIcon from "@mui/icons-material/History";
 
@@ -66,6 +67,8 @@ const Write = () => {
     setCat(evt.target.value);
   };
 
+  const handleSubmit = async () => {};
+
   return (
     <Grid container spacing={6} className={classes.writeWrapper}>
       <Grid item xs={8} style={{ margin: "30px 0" }}>
@@ -108,6 +111,15 @@ const Write = () => {
           <div className={classes.buttons}>
             <Button size="small" fullWidth variant="outlined" startIcon={<HistoryIcon />}>
               Save as draft
+            </Button>
+            <Button
+              size="small"
+              fullWidth
+              variant="contained"
+              endIcon={<PublishRoundedIcon />}
+              onClick={handleSubmit}
+            >
+              Publish
             </Button>
             <Button size="small" fullWidth variant="contained" endIcon={<SaveIcon />}>
               Update
