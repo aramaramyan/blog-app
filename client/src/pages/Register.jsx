@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Stack, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { AuthContext } from "../context/authContext";
 
 const useStyles = makeStyles({
   formContainer: {
@@ -24,6 +25,7 @@ const Register = () => {
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { register } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -31,7 +33,7 @@ const Register = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post("/auth/register", inputs);
+      await register(inputs);
       navigate("/");
     } catch (err) {
       setError(err.response.data);
