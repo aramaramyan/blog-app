@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
@@ -73,6 +73,8 @@ const Single = () => {
     fetchData();
   }, [postId]);
 
+  const fullNameLetters = useMemo(() => getUsrNameFirstLetters(post.userName), [post]);
+
   const handleDeletePost = async () => {
     try {
       await axios.delete(`/posts/${postId}`);
@@ -92,12 +94,12 @@ const Single = () => {
         )}
         <div className={classes.postOwnerWrapper}>
           {post.userImg ? (
-            <Avatar alt={post.name} src={post.userImg} />
+            <Avatar alt={post.userName} src={post.userImg} />
           ) : (
-            <Avatar>{getUsrNameFirstLetters(post.name)}</Avatar>
+            <Avatar>{fullNameLetters}</Avatar>
           )}
           <div className={classes.nameWrapper}>
-            <Typography variant="h6">Aram Aramyan</Typography>
+            <Typography variant="h6">{post.userName}</Typography>
             <Typography variant="caption" className={classes.postDate}>
               Posted {moment(post.date).fromNow()}
             </Typography>
