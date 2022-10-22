@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import ReactQuill from "react-quill";
 import axios from "axios";
@@ -53,6 +53,7 @@ const useStyles = makeStyles({
 
 const Write = () => {
   const state = useLocation().state;
+  const navigate = useNavigate();
   const classes = useStyles();
   const [value, setValue] = useState(state ? state.desc : "");
   const [title, setTitle] = useState(state ? state.title : "");
@@ -101,6 +102,8 @@ const Write = () => {
             img: file ? imgUrl : "",
             date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
           });
+
+      navigate("/");
     } catch (err) {
       console.log(`:::err:::`, err);
     }

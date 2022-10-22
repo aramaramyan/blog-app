@@ -14,7 +14,7 @@ const MenuPostCard = ({ id, title, img }) => {
 
   return (
     <Card sx={{ maxWidth: 345 }} className={classes.card}>
-      <CardMedia component="img" height="140" image={img} alt="Card Image" />
+      <CardMedia component="img" height="140" image={`../uploads/${img}`} alt="Card Image" />
       <CardContent className={classes.postTitle}>
         <Typography variant="h6">{title}</Typography>
       </CardContent>

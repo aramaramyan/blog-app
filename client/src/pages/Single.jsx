@@ -4,6 +4,7 @@ import axios from "axios";
 import moment from "moment";
 import { AuthContext } from "../context/authContext";
 import { getUsrNameFirstLetters } from "../helpers/getUsrNameFirstLetters";
+import getText from "../helpers/getText";
 import { makeStyles } from "@mui/styles";
 import Menu from "../components/Menu";
 import { Avatar, Grid, Typography } from "@mui/material";
@@ -84,9 +85,11 @@ const Single = () => {
   return (
     <Grid container spacing={6} className={classes.singlePageWrapper}>
       <Grid item xs={8}>
-        <div className={classes.postImage}>
-          <img src={post.img} alt="background" />
-        </div>
+        {post.img && (
+          <div className={classes.postImage}>
+            <img src={`../uploads/${post.img}`} alt="background" />
+          </div>
+        )}
         <div className={classes.postOwnerWrapper}>
           {post.userImg ? (
             <Avatar alt={post.name} src={post.userImg} />
@@ -113,7 +116,7 @@ const Single = () => {
             {post.title}
           </Typography>
           <Typography paragraph className={classes.postDescription}>
-            {post.desc}
+            {getText(post.desc)}
           </Typography>
         </div>
       </Grid>

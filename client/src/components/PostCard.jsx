@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import getText from "../helpers/getText";
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
@@ -26,12 +27,6 @@ const useStyles = makeStyles({
   },
 });
 
-const getText = (html) => {
-  const doc = new DOMParser().parseFromString(html, "text/html");
-
-  return doc.body.textContent;
-};
-
 const PostCard = ({ id, title, description, img }) => {
   const classes = useStyles();
 
@@ -50,7 +45,7 @@ const PostCard = ({ id, title, description, img }) => {
             <Link to={`/post/${id}`}>{title}</Link>
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {description}
+            {getText(description)}
           </Typography>
         </CardContent>
         <CardActions>
