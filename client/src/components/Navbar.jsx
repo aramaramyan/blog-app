@@ -160,7 +160,9 @@ const Navbar = () => {
                     handleCloseUserMenu();
                   }}
                 >
-                  <Typography textAlign="center">WRITE</Typography>
+                  <Link to={"/write"} style={{ color: "black", textDecoration: "none" }}>
+                    <Typography textAlign="center">WRITE</Typography>
+                  </Link>
                 </MenuItem>
                 <MenuItem
                   onClick={() => {

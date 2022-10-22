@@ -26,6 +26,12 @@ const useStyles = makeStyles({
   },
 });
 
+const getText = (html) => {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+
+  return doc.body.textContent;
+};
+
 const PostCard = ({ id, title, description, img }) => {
   const classes = useStyles();
 
@@ -34,7 +40,7 @@ const PostCard = ({ id, title, description, img }) => {
       <CardMedia
         component="img"
         height="140"
-        image={img}
+        image={`../uploads/${img}`}
         alt="image"
         className={classes.cardImage}
       />

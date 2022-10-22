@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import ReactQuill from "react-quill";
+import axios from "axios";
+import moment from "moment";
 import "react-quill/dist/quill.snow.css";
 import {
   Button,
@@ -49,11 +52,12 @@ const useStyles = makeStyles({
 });
 
 const Write = () => {
+  const state = useLocation().state;
   const classes = useStyles();
-  const [value, setValue] = useState("");
-  const [title, setTitle] = useState("");
+  const [value, setValue] = useState(state ? state.desc : "");
+  const [title, setTitle] = useState(state ? state.title : "");
+  const [cat, setCat] = useState(state ? state.category : "");
   const [file, setFile] = useState(null);
-  const [cat, setCat] = useState("");
 
   const handleTitle = (evt) => {
     setTitle(evt.target.value);
@@ -67,7 +71,40 @@ const Write = () => {
     setCat(evt.target.value);
   };
 
-  const handleSubmit = async () => {};
+  const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await axios.post("/upload", formData);
+
+      return res.data;
+    } catch (err) {
+      console.log(`:::err:::`, err);
+    }
+  };
+
+  const handleSubmit = async () => {
+    const imgUrl = await upload();
+
+    try {
+      state
+        ? await axios.put(`/posts/${state.id}`, {
+            title,
+            desc: value,
+            cat,
+            img: file ? imgUrl : "",
+          })
+        : await axios.post("/posts", {
+            title,
+            desc: value,
+            cat,
+            img: file ? imgUrl : "",
+            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+          });
+    } catch (err) {
+      console.log(`:::err:::`, err);
+    }
+  };
 
   return (
     <Grid container spacing={6} className={classes.writeWrapper}>
@@ -75,6 +112,7 @@ const Write = () => {
         <TextField
           id="outlined-basic"
           label="Title"
+          value={title}
           variant="outlined"
           size="small"
           fullWidth
@@ -112,18 +150,27 @@ const Write = () => {
             <Button size="small" fullWidth variant="outlined" startIcon={<HistoryIcon />}>
               Save as draft
             </Button>
-            <Button
-              size="small"
-              fullWidth
-              variant="contained"
-              endIcon={<PublishRoundedIcon />}
-              onClick={handleSubmit}
-            >
-              Publish
-            </Button>
-            <Button size="small" fullWidth variant="contained" endIcon={<SaveIcon />}>
-              Update
-            </Button>
+            {state ? (
+              <Button
+                size="small"
+                fullWidth
+                variant="contained"
+                endIcon={<SaveIcon />}
+                onClick={handleSubmit}
+              >
+                Update
+              </Button>
+            ) : (
+              <Button
+                size="small"
+                fullWidth
+                variant="contained"
+                endIcon={<PublishRoundedIcon />}
+                onClick={handleSubmit}
+              >
+                Publish
+              </Button>
+            )}
           </div>
         </div>
         <div className={classes.item}>
@@ -140,36 +187,42 @@ const Write = () => {
                 value="art"
                 control={<Radio />}
                 label="Art"
+                checked={cat === "art"}
                 onChange={handleCategory}
               />
               <FormControlLabel
                 value="science"
                 control={<Radio />}
                 label="Science"
+                checked={cat === "science"}
                 onChange={handleCategory}
               />
               <FormControlLabel
                 value="technology"
                 control={<Radio />}
                 label="Technology"
+                checked={cat === "technology"}
                 onChange={handleCategory}
               />
               <FormControlLabel
                 value="cinema"
                 control={<Radio />}
                 label="Cinema"
+                checked={cat === "cinema"}
                 onChange={handleCategory}
               />
               <FormControlLabel
                 value="design"
                 control={<Radio />}
                 label="Design"
+                checked={cat === "design"}
                 onChange={handleCategory}
               />
               <FormControlLabel
                 value="food"
                 control={<Radio />}
                 label="Food"
+                checked={cat === "food"}
                 onChange={handleCategory}
               />
             </RadioGroup>

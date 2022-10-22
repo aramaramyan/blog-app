@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import { AuthContext } from "../context/authContext";
@@ -44,6 +44,10 @@ const useStyles = makeStyles({
   },
   icon: {
     cursor: "pointer",
+  },
+  link: {
+    textDecoration: "none",
+    color: "black",
   },
 });
 
@@ -97,7 +101,9 @@ const Single = () => {
           </div>
           {currentUser.email === post.userEmail && (
             <div className={classes.actions}>
-              <EditRoundedIcon fontSize="small" className={classes.icon} />
+              <Link to={`/write?edit=${postId}`} state={post} className={classes.link}>
+                <EditRoundedIcon fontSize="small" className={classes.icon} />
+              </Link>
               <DeleteIcon fontSize="small" className={classes.icon} onClick={handleDeletePost} />
             </div>
           )}
