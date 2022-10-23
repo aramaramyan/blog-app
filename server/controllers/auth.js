@@ -15,13 +15,21 @@ export const register = (req, res) => {
     const salt = bycript.genSaltSync(10);
     const hash = bycript.hashSync(req.body.password, salt);
 
-    const query = "INSERT INTO users(`name`, `email`, `password`) VALUES (?)";
-    const values = [req.body.name, req.body.email, hash];
+    const query =
+      "INSERT INTO users(`userName`, `email`, `password`) VALUES (?)";
+    const values = [req.body.userName, req.body.email, hash];
 
     db.query(query, [values], (err, data) => {
       if (err) return res.json(err);
 
-      return res.status(200).json("User has been created.");
+      const createdUser = {
+        id: data.insertId,
+        userName: values[0],
+        email: values[1],
+        img: null,
+      };
+
+      return res.status(200).json(createdUser);
     });
   });
 };
