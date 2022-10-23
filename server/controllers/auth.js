@@ -29,7 +29,12 @@ export const register = (req, res) => {
         img: null,
       };
 
-      return res.status(200).json(createdUser);
+      const token = jwt.sign({ id: createdUser.id }, "jwtkey");
+
+      return res
+        .cookie("access_token", token, { httpOnly: true })
+        .status(200)
+        .json(createdUser);
     });
   });
 };
