@@ -32,13 +32,15 @@ const PostCard = ({ id, title, description, img }) => {
 
   return (
     <Card className={classes.card}>
-      <CardMedia
-        component="img"
-        height="140"
-        image={`../uploads/${img}`}
-        alt="image"
-        className={classes.cardImage}
-      />
+      {img && (
+        <CardMedia
+          component="img"
+          height="140"
+          image={`../uploads/${img}`}
+          alt="image"
+          className={classes.cardImage}
+        />
+      )}
       <div className={classes.cardContent}>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

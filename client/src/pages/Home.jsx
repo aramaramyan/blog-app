@@ -37,7 +37,7 @@ const Home = () => {
               id={post.id}
               title={post.title}
               description={post.desc}
-              img={`../uploads/${post.img}`}
+              img={post.img}
             />
           );
         })}

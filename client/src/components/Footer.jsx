@@ -4,6 +4,7 @@ import logo from "./../img/MAGNAT DESIGN-min.PNG";
 
 const useStyles = makeStyles({
   footerWrapper: {
+    position: "sticky",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",

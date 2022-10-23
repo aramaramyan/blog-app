@@ -8,6 +8,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const register = async (inputs) => {
     const res = await axios.post("/auth/register", inputs);
+    console.log(`:::res:::`, res);
     setCurrentUser(res.data);
   };
 
@@ -26,6 +27,8 @@ export const AuthContextProvider = ({ children }) => {
   }, [currentUser]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ currentUser, login, logout, register }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
