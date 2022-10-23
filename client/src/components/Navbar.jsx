@@ -15,6 +15,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { getUsrNameFirstLetters } from "../helpers/getUsrNameFirstLetters";
 
 const useStyles = makeStyles({
   navbarWrapper: {},
@@ -143,7 +144,7 @@ const Navbar = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar>AA</Avatar>
+                  <Avatar>{getUsrNameFirstLetters(currentUser.userName)}</Avatar>
                 </IconButton>
               </Tooltip>
               <Menu
