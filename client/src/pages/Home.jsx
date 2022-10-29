@@ -5,8 +5,22 @@ import PostCard from "../components/PostCard";
 import { useLocation } from "react-router-dom";
 
 const useStyles = makeStyles({
-  homeWrapper: {},
-  postList: {},
+  homeWrapper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100%",
+    paddingTop: "40px",
+    overflowY: "scroll",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+  },
+  postList: {
+    width: "90%",
+    height: "100%",
+  },
 });
 
 const Home = () => {

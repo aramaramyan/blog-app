@@ -39,7 +39,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div style={{ width: "100%", height: "100vh" }}>
+    <div style={{ width: "100%", height: "100vh", backgroundColor: "gainsboro" }}>
       <Container
         maxWidth="md"
         fixed

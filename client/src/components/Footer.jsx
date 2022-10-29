@@ -11,6 +11,9 @@ const useStyles = makeStyles({
     width: "100%",
     height: 60,
     backgroundColor: "whitesmoke",
+    borderRadius: "12px 12px 0 0",
+    backdropFilter: "blur(4.9px)",
+    border: "1px solid rgba(255, 255, 255, 0.5)",
   },
   logoWrapper: {
     display: "flex",

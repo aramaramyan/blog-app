@@ -18,7 +18,11 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { getUsrNameFirstLetters } from "../helpers/getUsrNameFirstLetters";
 
 const useStyles = makeStyles({
-  navbarWrapper: {},
+  root: {
+    borderRadius: "0 0 12px 12px",
+    backdropFilter: "blur(4.9px)",
+    border: "1px solid rgba(255, 255, 255, 0.5)",
+  },
 });
 
 const pages = [
@@ -31,12 +35,11 @@ const pages = [
 ];
 
 const Navbar = () => {
+  const classes = useStyles();
   const { currentUser, logout } = useContext(AuthContext);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate();
-
-  console.log(`:::currentUser:::`, currentUser);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -54,7 +57,7 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" className={classes.root} sx={{ bgcolor: "rgba(255, 255, 255, 0.4)" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />

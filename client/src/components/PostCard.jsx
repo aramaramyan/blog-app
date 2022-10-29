@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import getText from "../helpers/getText";
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { textCutter } from "../helpers/textCutter";
 
 const useStyles = makeStyles({
   card: {
@@ -19,11 +20,18 @@ const useStyles = makeStyles({
     flex: 1,
     width: "300px",
     height: "300px",
+    overflow: "hidden",
+    borderRadius: 4,
   },
   cardContent: {
     flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
     width: "100%",
-    height: "100%",
+    height: "300px",
+    textAlign: "justify",
   },
 });
 
@@ -31,7 +39,10 @@ const PostCard = ({ id, title, description, img }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
+    <Card
+      className={classes.card}
+      sx={{ backgroundColor: "transparent", boxShadow: "none", overflow: "visible" }}
+    >
       {img && (
         <CardMedia
           component="img"
@@ -47,7 +58,7 @@ const PostCard = ({ id, title, description, img }) => {
             <Link to={`/post/${id}`}>{title}</Link>
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {getText(description)}
+            {textCutter(getText(description))}
           </Typography>
         </CardContent>
         <CardActions>
