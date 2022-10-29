@@ -12,6 +12,10 @@ import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const useStyles = makeStyles({
+  singlePageWrapper: {
+    width: "100%",
+    paddingTop: "80px",
+  },
   postImage: {
     margin: "30px 0",
     width: "100%",

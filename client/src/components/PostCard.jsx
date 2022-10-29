@@ -41,7 +41,6 @@ const useStyles = makeStyles({
 });
 
 const PostCard = ({ id, title, description, img, borderRadius }) => {
-  console.log(`:::borderRadius:::`, borderRadius);
   const classes = useStyles();
 
   return (
