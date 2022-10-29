@@ -7,6 +7,7 @@ import Layout from "./components/Layout";
 import Single from "./pages/Single";
 import Register from "./pages/Register";
 import { Container } from "@mui/material";
+import backgroundImg from "./img/background.jpeg";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,13 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div style={{ width: "100%", height: "100vh", backgroundColor: "gainsboro" }}>
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+        background: `url(${backgroundImg}) 0 0/cover no-repeat`,
+      }}
+    >
       <Container
         maxWidth="md"
         fixed

@@ -21,7 +21,6 @@ const useStyles = makeStyles({
     width: "300px",
     height: "300px",
     overflow: "hidden",
-    borderRadius: 4,
   },
   cardContent: {
     flex: 1,
@@ -31,17 +30,28 @@ const useStyles = makeStyles({
     alignItems: "center",
     width: "100%",
     height: "300px",
+  },
+  link: {
+    textDecoration: "none",
+    color: "black",
+  },
+  description: {
     textAlign: "justify",
   },
 });
 
-const PostCard = ({ id, title, description, img }) => {
+const PostCard = ({ id, title, description, img, borderRadius }) => {
+  console.log(`:::borderRadius:::`, borderRadius);
   const classes = useStyles();
 
   return (
     <Card
       className={classes.card}
-      sx={{ backgroundColor: "transparent", boxShadow: "none", overflow: "visible" }}
+      sx={{
+        backgroundColor: "transparent",
+        boxShadow: "none",
+        overflow: "visible",
+      }}
     >
       {img && (
         <CardMedia
@@ -50,14 +60,17 @@ const PostCard = ({ id, title, description, img }) => {
           image={`../uploads/${img}`}
           alt="image"
           className={classes.cardImage}
+          sx={{ borderRadius }}
         />
       )}
       <div className={classes.cardContent}>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            <Link to={`/post/${id}`}>{title}</Link>
+            <Link to={`/post/${id}`} className={classes.link}>
+              {title}
+            </Link>
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" className={classes.description}>
             {textCutter(getText(description))}
           </Typography>
         </CardContent>

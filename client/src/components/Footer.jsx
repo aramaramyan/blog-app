@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import logo from "./../img/MAGNAT DESIGN-min.PNG";
 
 const useStyles = makeStyles({
   footerWrapper: {
@@ -10,8 +9,9 @@ const useStyles = makeStyles({
     alignItems: "center",
     width: "100%",
     height: 60,
+    padding: "0 10px",
     backgroundColor: "whitesmoke",
-    borderRadius: "12px 12px 0 0",
+    borderRadius: "4px 4px 0 0",
     backdropFilter: "blur(4.9px)",
     border: "1px solid rgba(255, 255, 255, 0.5)",
   },
@@ -21,10 +21,6 @@ const useStyles = makeStyles({
     alignItems: "center",
     height: 60,
   },
-  logo: {
-    width: 50,
-    height: 50,
-  },
 });
 
 const Footer = () => {
@@ -33,8 +29,7 @@ const Footer = () => {
   return (
     <div className={classes.footerWrapper}>
       <div className={classes.logoWrapper}>
-        <img src={logo} alt="Magnat Logo" className={classes.logo} />
-        <span>MAGNAT Blog</span>
+        <span>Blog App</span>
       </div>
       <span>Made by Aram Aramyan | 2022</span>
     </div>

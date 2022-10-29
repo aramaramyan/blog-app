@@ -19,7 +19,8 @@ import { getUsrNameFirstLetters } from "../helpers/getUsrNameFirstLetters";
 
 const useStyles = makeStyles({
   root: {
-    borderRadius: "0 0 12px 12px",
+    maxWidth: "900px",
+    borderRadius: "0 0 4px 4px",
     backdropFilter: "blur(4.9px)",
     border: "1px solid rgba(255, 255, 255, 0.5)",
   },
@@ -57,7 +58,16 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="sticky" className={classes.root} sx={{ bgcolor: "rgba(255, 255, 255, 0.4)" }}>
+    <AppBar
+      position="absolute"
+      className={classes.root}
+      sx={{
+        bgcolor: "rgba(255, 255, 255, 0.4)",
+        top: 34,
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />

@@ -3,6 +3,7 @@ import axios from "axios";
 import { makeStyles } from "@mui/styles";
 import PostCard from "../components/PostCard";
 import { useLocation } from "react-router-dom";
+import { borderRadiusGenerator } from "../helpers/borderRadiusGenerator";
 
 const useStyles = makeStyles({
   homeWrapper: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     width: "100%",
     height: "100%",
-    paddingTop: "40px",
+    paddingTop: "110px",
     overflowY: "scroll",
     "&::-webkit-scrollbar": {
       display: "none",
@@ -52,6 +53,7 @@ const Home = () => {
               title={post.title}
               description={post.desc}
               img={post.img}
+              borderRadius={borderRadiusGenerator()}
             />
           );
         })}
